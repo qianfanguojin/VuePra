@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../assets/vue.js"></script>
+</head>
+
+<body>
+  <div id ="app">
+    <h3>{{fullName}} </h3>
+  </div>
+
+  <script>
+   //创建Vue实例,得到 ViewModel
+   const app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好啊',
+    },
+    computed: {
+      // 完整写法,但由于set方法使用的次数较少，默认为get方法
+      // fullInfo: function(){
+      //   return this.name + '' + this.age
+      // }
+      fullName: {
+        set: function () {
+          
+        },
+        get: function(){
+          return 'abc'
+        }
+      },
+    },
+    methods: {}
+   });
+  </script>
+</body>
+
+</html>

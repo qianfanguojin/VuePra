@@ -1,0 +1,55 @@
+body{
+  min-width: 1100px;
+ 
+}
+div{
+  margin: 0 auto;
+}
+.header {
+  background-image: url('./top-bg.jpg');
+  height: 130px;
+  width: 100%;
+  /* float: left; */
+}
+.content {
+  width: 1100px;
+  margin: 0 auto;
+}
+.logo {
+ float: left;
+ width: 355px;
+}
+.search {
+  float: right;
+  width: 217px;
+  height: 28px;
+  background-image: url('./search.png');
+  margin-top: 45px;
+  padding-left: 15px;
+}
+.search-input{
+  width: 172px;
+  line-height: 28px;
+  background: none;
+  height: 28px;
+  float: left;
+  font-size: 12px;
+  color: #003671;
+  margin: 0;
+  padding: 0;
+  border: 0px;
+}
+.nav ul li{
+  list-style: none;
+  padding: 10px 15px 10px 15px;
+  float: left;
+}
+.nav ul {
+  padding: 0;
+}
+.nav{
+  width: 1100px;
+  margin: 0 auto;
+}
+
+

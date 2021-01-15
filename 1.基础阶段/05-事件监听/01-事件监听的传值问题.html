@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../assets/vue.js"></script>
+</head>
+
+<body>
+  <div id ="app">
+    <!-- 1.若没有参数时，调用方法，可以带括号也可以不带括号 -->
+    <!-- <button @click="test1">按钮#</button>
+    <button @click="test1()">按钮！</button> -->
+
+
+    <!-- 2.可以带参，如果是字符串要记得加引号，不然会被识别为Vue中的对象参数 -->
+    <!-- <button @click="test2(abc)">按钮0</button>
+    <button @click="test2(ab)">按钮1</button>
+    <button @click="test2('ab')">按钮2</button> -->
+
+
+    <!-- 若不带参，还是会默认传一个event对象到方法中 -->
+    <button @click="test3">按钮3</button>
+
+    <!-- 如果有多个参数式或要显式的传event参数，用$event  -->
+    <button @click="test4('abc',$event)">按钮4</button>
+    <button @click="">按钮5</button>
+  </div>
+
+  <script>
+   //创建Vue实例,得到 ViewModel
+   const app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好啊',
+      // ab: 'ab'
+    },
+    methods: {
+      // test1(){
+      //   console.log('带不带括号都一样');
+      // }
+      test2(abc) {
+        console.log(abc,'');
+      },
+      test3(even) {
+        console.log(even);
+      },
+      test4(abc, event) {
+        console.log(abc,event);
+      }
+    }
+   });
+  </script>
+</body>
+
+</html>

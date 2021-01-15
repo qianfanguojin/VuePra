@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../assets/vue.js"></script>
+  <style>
+    .active{
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <div id ="app">
+    <!-- {{message}} -->
+    <ul>
+      <li v-for="(movie, index) in movies" v-bind:class="getClasses(index)" v-on:click="changeColor(index)">{{index}}{{movie}} </li>
+    </ul>
+  </div>
+
+  <script>
+   //创建Vue实例,得到 ViewModel
+   const app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好啊',
+      movies: ['阿甘正传', 'Re0', '肖申克的救赎'],
+      toRed1: false,
+      toRed2: false,
+      toRed3: false
+    },
+    methods: {
+      getClasses: function (index){
+        switch (index) {
+          case 0:
+            return {active: this.toRed1}
+            break;
+          case 1:
+            return {active: this.toRed2}
+            break;
+          case 2:
+            return {active: this.toRed3}
+            break;
+          default:
+            break;
+        }
+        return 
+      },
+      changeColor: function (index){
+        switch (index) {
+          case 0:
+            return this.toRed1 = !this.toRed1
+            break;
+          case 1:
+            return this.toRed2 = !this.toRed2
+            break;
+          case 2:
+            return this.toRed3 = !this.toRed3
+            break;
+          default:
+            break;
+        }
+        //return this.toRed = !this.toRed
+      }
+    }
+   });
+  </script>
+</body>
+
+</html>

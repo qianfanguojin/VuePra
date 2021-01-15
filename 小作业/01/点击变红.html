@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../assets/vue.js"></script>
+  <style>
+    .active{
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <div id ="app">
+    <ul>
+      <!-- 
+        1. 为每个li都创建点击事件
+        2. 因为class属性中的对象每个键对应的值都是布尔值，为了实现每个li单独改变
+           我们可以通过根据当前点击的index和默认index值比对，默认index为第一个，
+           当点击任意一个li时，将默认的index更换为对应的index，激活class属性 
+      -->
+      <li v-for="(item, index) in movies" :class="{active: index == currentIndex}":key="item" @click="changeColor(index)">
+        {{item}}
+      </li>
+    </ul>
+  </div>
+
+  <script>
+   //创建Vue实例,得到 ViewModel
+   const app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好啊',
+      movies: ['阿甘正传','那些年','星际穿越','隐秘的角落'],
+      currentIndex: 0
+    },
+    methods: {
+      changeColor (index) {
+        this.currentIndex = index
+      }
+    }
+   });
+  </script>
+</body>
+
+</html>

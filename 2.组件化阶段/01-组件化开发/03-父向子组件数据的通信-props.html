@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../assets/vue.js"></script>
+</head>
+
+
+<!-- 父向子通信通过props属性，两步
+      1. 在子组件props中声明新的变量名接收父组件的数据
+      2. 在子组件的template html标签中Vue绑定 v-bind:子组件属性="父组件属性值"
+      -->
+
+<body>
+  <div id ="app">
+    <!-- 将父组件的数据传到对应子组件的变量中 -->
+    <cop :cmessage="message" :cage="age"></cop>
+
+    <!-- 测试默认值 -->
+    <!-- <cop :cage="age"></cop> -->
+  </div>
+
+
+
+
+
+
+  <!-- 子组件模板 -->
+  <template id="tcop" >
+    <div>
+      <h2>父子组件通信</h2>
+      <h2 >
+        {{cmessage}}
+        <!-- {{cage}} -->
+      </h2>
+    <div>
+  </template>
+
+  <script>
+
+
+  //创建子组件
+  const cop = {
+    template: "#tcop",
+    data(){
+      return {}
+    },
+    //多种接收值的方式
+    //1.用数组，数组中的字符串就是接收到的变量名,上下必须一致
+    //props:['cmessage', 'cage'] 
+    //2. 用对象
+    props: {
+      // cmessage : String //1.接收名为cmessage指定类型String
+
+      cmessage: {    //2.接受名为cmessage,对这个变量约束操作抽象为一个对象      
+        type: String,   
+        default: "aaa", //设置默认值，
+        // default: function(){}如果是类型为数组和对象默认值必须为函数
+        required: true //设置该属性为必传属性，即在自定义dom中必须绑定
+      }
+    },
+  }
+   //创建Vue实例,得到 ViewModel
+   const app = new Vue({
+    el: '#app',
+    data: {
+      message: '',
+      age: 18
+    },
+    methods: {},
+    components: {
+      cop
+    }
+   });
+  </script>
+</body>
+
+</html>

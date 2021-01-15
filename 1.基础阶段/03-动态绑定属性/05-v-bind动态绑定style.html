@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../assets/vue.js"></script>
+</head>
+
+<body>
+  <div id ="app">
+    <!-- 给定方式 -->
+    <h3 :style="{fontSize:'60px'}">{{message}}</h3>
+    <!-- 对象绑定方式 -->
+    <!-- <h3 :style="{backgroundColor: nowColor}">{{message}}</h3> -->
+    <!-- 函数绑定方式 -->
+    <h3 :style="getStyles()">{{message}}</h3>
+    <button v-on:click="changeColor()">改颜色</button>
+  </div>
+
+  <script>
+   //创建Vue实例,得到 ViewModel
+   const app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好啊',
+      nowColor: 'red'
+    },
+    methods: {
+      getStyles: function(){
+        return {backgroundColor: this.nowColor}
+      },
+      changeColor: function(){
+        this.nowColor='blue'
+      }
+    }
+   });
+  </script>
+</body>
+
+</html> 

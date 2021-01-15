@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../assets/vue.js"></script>
+    <title>HelloVueJs</title>
+
+</head>
+
+<body>
+    <div id="app">
+        {{message}}
+        {{name}}
+    </div>
+
+    <script>
+        const app = new Vue({
+            el:"#app",
+            data:{
+                message:"你好啊"
+            }
+
+        })
+
+    </script>
+</body>
+</html>

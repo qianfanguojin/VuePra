@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../assets/vue.js"></script>
+</head>
+<!-- 
+    若要对数据进行处理，我们推荐使用计算属性
+ -->
+<body>
+  <div id ="app">
+    <!-- 第一种方式,Mustache语法实现 -->
+    <h1>{{name + '' + age}}</h1>
+    <h1>
+      {{name}} {{age}}
+    </h1>
+
+    <!-- 第二种,封装成函数 -->
+    <h1>{{getInfo()}} </h1>
+
+    <!-- 第三种，使用计算属性 -->
+    <h1>{{fullInfo}} </h1>
+  </div>
+
+  <script>
+   //创建Vue实例,得到 ViewModel
+   const app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好啊',
+      name: '吴桂强',
+      age: 24
+    },
+    computed: {
+      fullInfo: function(){
+        return this.name + '' + this.age
+      }
+   
+    },
+    methods: {
+      getInfo(){
+        return this.name + '' + this.age
+      }
+
+    }
+   });
+  </script>
+</body>
+
+</html>

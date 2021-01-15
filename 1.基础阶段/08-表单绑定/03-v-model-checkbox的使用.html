@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../assets/vue.js"></script>
+</head>
+
+<body>
+  <div id ="app">
+  <!-- checkbox为输入元素中的多选框，在v-model中，有两种情况 -->
+  <!-- 1. 只有一个checkbox 双向绑定返回的值为布尔值 -->
+    
+  <h1>一个</h1>
+    <label for="license">
+      <input type="checkbox" name="license" id="license" v-model="license" >同意卖身
+      <button :disabled="!license">下一步</button>
+    </label>
+    <h2>
+      {{license}}
+    </h2>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+  <!-- 2. 有多个checkbox，双向绑定返回值为选中的value数组 (默认也要是数组类型，不然会出错)-->
+
+  <h1>多个</h1>
+  <label for="apple">
+    <input type="checkbox" name="apple" id="apple" value="apple" v-model="fruits" >苹果
+  </label>
+  <label for="banana">
+    <input type="checkbox" name="banana" id="banana" value="banana" v-model="fruits">香蕉
+  </label>
+  <label for="grape">
+    <input type="checkbox" name="grape" id="grape" value="grape" v-model="fruits">葡萄
+  </label>
+  <h2>
+    {{fruits}}
+  </h2>
+  </div>
+
+  <script>
+   //创建Vue实例,得到 ViewModel
+   const app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好啊',
+      license:false,
+      fruits:[]
+    },
+    methods: {}
+   });
+  </script>
+</body>
+
+</html>

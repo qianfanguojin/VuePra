@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../assets/vue.js"></script>
+</head>
+<!-- Vue 组件模板抽离 -->
+
+
+<body>
+  <div id ="app">
+      <cpn></cpn>
+
+      <scpn></scpn>
+
+      <tcpn></tcpn>
+  </div>
+
+<!-- 在定义组件时，定义HTML模板经常是不可避免的，而在template属性中定义模板需要一个字符串，
+    在没有语法提示和自动缩进时编码极度不方便 -->
+    <script>
+      Vue.component('cpn', {
+        template: '<p>内部定义</p>'
+      })
+    </script>
+  <!-- 事实上，可以将模板转化为在组件外部编写
+        1. 通过script标签，类型type为 text/x-template，定义 id,在组件的template属性中通过选择器语法选择
+        2. 通过template 标签，定义 id，在组件的template属性中通过选择器语法选择
+  -->
+
+
+      <!-- 1. script标签 -->
+      <script type="text/x-template" id="scpn">
+        <p>script 标签定义</p>
+      </script>
+
+      <!-- 2. template标签 -->
+      <template id='tcpn'>
+        <p>template 标签定义</p>
+      </template>
+
+      <script>
+
+        Vue.component('scpn',{
+          template: '#scpn'
+        })
+
+        Vue.component('tcpn', {
+          template: '#tcpn'
+        })
+      </script>
+  <script>
+   //创建Vue实例,得到 ViewModel
+   const app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好啊',
+    },
+    methods: {}
+   });
+  </script>
+</body>
+
+</html> 

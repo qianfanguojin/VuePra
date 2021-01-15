@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../assets/vue.js"></script>
+</head>
+
+<body>
+  <div id ="app">
+    <!-- 下拉框，也分为一个和多个的区分 -->
+
+    <!-- 1. 一个下拉框，记住v-model绑定的是select，而不是option -->
+    <select name="hobby" id="hobby" v-model="hobby">
+      <option value="A" selected>A</option>
+      <option value="B">B</option>
+      <option value="C">C</option>
+      <option value="D">D</option>
+    </select>
+    <h2>
+      {{hobby}}
+    </h2>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <!-- 2.多个（少见）下拉框，可多选，通过multiple属性控制，此时返回应该是数组 -->
+
+    <select name="hobbies" id="hobbies" v-model="hobbies" multiple>
+      <option value="A" selected>A</option>
+      <option value="B">B</option>
+      <option value="C">C</option>
+      <option value="D">D</option>
+    </select>
+    <h2>
+      {{hobbies}}
+    </h2>
+  </div>
+
+  <script>
+   //创建Vue实例,得到 ViewModel
+   const app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好啊',
+      hobby:'A',
+      hobbies: []
+    },
+    methods: {}
+   });
+  </script>
+</body>
+
+</html>

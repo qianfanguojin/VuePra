@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../assets/vue.js"></script>
+</head>
+
+<body>
+  <div id ="app">
+    <!-- 1.lazy修饰符，失去焦点时再更新数据 -->
+    <input type="text" v-model.lazy="age">
+    <h2>
+      {{age}}
+    </h2>
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <!-- 2.num修饰符，由于v-model默认将数据变为字符串，num修饰符可将其确定为number类型 -->
+    字符串<input type="number" v-model="Lage">
+    数字<input type="number" v-model.number="Lage">
+    <h2>
+      {{Lage}} --{{typeof Lage}}
+    </h2>
+
+    <!-- trim 剥除空格 -->
+    <input type="text" v-model.trim="">
+  </div>
+
+  <script>
+   //创建Vue实例,得到 ViewModel
+   const app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好啊',
+      age:12,
+      Lage: 55
+    },
+    methods: {}
+   });
+  </script>
+</body>
+
+</html>

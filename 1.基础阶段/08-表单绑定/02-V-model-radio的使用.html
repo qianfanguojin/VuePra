@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../assets/vue.js"></script>
+</head>
+
+<!-- V-Model是Vue的双向绑定指令，能帮助我们在表单处理时实时更改Vue实例中的数据 -->
+<body>
+  <div id ="app">
+      <!-- 1. radius的绑定 
+              
+            1.1
+              一般来说，radio单选框需要指定相同的name
+              但用v-model绑定也可以实现相同的效果
+            1.2
+              V-Model会根据不同的类型，返回表单元素改变时的 value值 
+      -->
+
+      <!-- <label for="male">
+        <input type="radio" name="sex" id="male">男
+      </label>
+      <label for="female">
+        <input type="radio" name="sex" id="female">女
+      </label> -->
+      <label for="male">
+        <input type="radio" name="gender" value="男" id="male" v-model="sex">男
+      </label>
+      <label for="female">
+        <input type="radio" name="gender" value="女" id="female" v-model="sex">女
+      </label>
+      <h1>{{sex}} </h1>
+  </div>
+
+  <script>
+   //创建Vue实例,得到 ViewModel
+   const app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好啊',
+      sex:'d'
+    },
+    methods: {}
+   });
+  </script>
+</body>
+
+</html>

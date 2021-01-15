@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../assets/vue.js"></script>
+</head>
+
+<body>
+
+  <!-- 组件名推荐全小写，若出现大写，只能是驼峰  myCon 
+        而且使用时必须变为全小写，大小写变化的地方加上- 
+      
+      -->
+  <script>
+    //1.创建组件Vue.extend() template属性为html模板
+    let conC = Vue.extend({
+      template: '<p>4324324</p>'
+    });
+    //2. 注册组件Vue.component(新标签名(字符串), 组件对象)
+    Vue.component('myCpn',conC)
+
+  </script>
+
+  <!-- 3. 使用新标签名，必须放在Vue处理的标签内 -->
+  <div id ="app">
+    <my-cpn></my-cpn>
+    <!-- <my-cpn></my-cpn>
+    <my-cpn></my-cpn> -->
+    
+  </div>
+  <script>
+   //创建Vue实例,得到 ViewModel
+   const app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好啊',
+    },
+    methods: {}
+   });
+  </script>
+</body>
+
+</html>

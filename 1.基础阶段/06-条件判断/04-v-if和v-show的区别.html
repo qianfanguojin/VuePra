@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../assets/vue.js"></script>
+</head>
+
+<body>
+
+  <!-- v-if不生成标签，v-show生成但不显示(disable)标签 -->
+  <div id ="app">
+    <h2 v-if="ifState">{{message}} </h2>
+    <h2 v-show="showState">{{message}} </h2>
+  </div>
+
+  <script>
+   //创建Vue实例,得到 ViewModel
+   const app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好啊',
+      ifState: true,
+      showState: true
+    },
+    methods: {}
+   });
+  </script>
+</body>
+
+</html>

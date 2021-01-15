@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../assets/vue.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div id="app">
+    <div v-if="getState()">
+      <table>
+        <thead>
+          <tr>
+            <td></td>
+            <td>书籍名称</td>
+            <td>出版日期</td>
+            <td>价格</td>
+            <td>购买数量</td>
+            <td>操作</td>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr v-for="(book, index) of books" :key="book.id">
+            <td>{{book.id}}</td>
+            <td>{{book.name}} </td>
+            <td>{{book.time}} </td>
+            <td>{{book.price | showPrice}} </td>
+            <td>
+              <button @click="decrement(index)" :disabled="book.count < 1">-</button>
+              <input type="text" :value="book.count">
+              <button @click="increment(index)">+</button>
+            </td>
+            <td>
+              <button @click="deleteLine(index)">移除</button>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+      <span>总价: {{getTotalPrice  | showPrice}} </span>
+    </div>
+    <h1 v-else>购物车已清空</h1>
+    
+  </div>
+</body>
+<script src="index.js"></script>
+
+</html>
