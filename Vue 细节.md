@@ -233,5 +233,82 @@ data() {
 
 ![](https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210114195740.png)
 
-#### 4.2 使用emit方法向子组件发送消息（数据）
+#### 4.2 使用$emit方法向子组件发送消息（数据）
+
+子组件通过$emit()方法向父组件发送消息，$emit方法的格式:
+
+```javascript
+$emit('customEventName',[data])
+```
+
+下面是一个在子组件中修改时同时更改父组件数据的例子：
+
+```javascript
+<div id ="app">
+    <h1 style="color: red;" >父：{{cinputmessage}}</h1>
+    
+    <cpn :inputMessage="cinputmessage" @cinput="inputChange">
+     
+    </cpn>
+</div>
+
+
+<template id="cpn">
+  <div>
+    <input type="text" value="" v-model="inputMessage" @input="cinputChange">
+    <h2>子{{inputMessage}} </h2>
+  </div>
+</template>
+
+//创建Vue实例,得到 ViewModel
+   const app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好啊',
+      cinputmessage:''
+    },
+    methods: {
+      inputChange(value) {
+        this.cinputmessage = value;
+      }
+    },
+    components: {
+      cpn:{
+        template: '#cpn',
+        data: function() {
+          return {
+            inputMessage:'',
+          }
+        },
+        methods: {
+          cinputChange(event) {
+						
+            return this.$emit('cinput', event.target.value)
+          }
+        },
+      }
+    }
+   });
+```
+
+![](https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210115105527.gif)
+
+#### 4.3 关于父子访问的一些属性
+
+**$children** 访问子组件的对象，返回一个数组
+
+**$refs**.ref值  访问子组件的对象，返回一个指定ref值的对象
+
+```javascript
+ <cpn ref="reftest"></cpn>
+ this.$refs.reftest
+```
+
+**$parent** 访问父组件
+
+**$root** 访问根组件
+
+### 5. slot 插槽
+
+ 
 

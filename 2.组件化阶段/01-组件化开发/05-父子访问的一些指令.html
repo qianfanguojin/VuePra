@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../assets/vue.js"></script>
+</head>
+
+<!-- 访问子组件对象可以使用$children , $refs 两个属性
+      $children 属性返回一个数组，返回所有的子组件
+      $refs 返回制定了ref属性的子组件标签 -->
+<body>
+  <div id="app">
+    <!-- <cpn></cpn> -->
+    <cpn ref="reftest"></cpn>
+    <button @click="btnClick">点击访问$children</button>
+    <button @click="btnClick2">点击访问$ref</button>
+  </div>
+
+
+  <template id="cpn">
+    <div>
+      <h1>我是子组件</h1>
+      <button @click="cbtnClick">点击访问$parent</button>
+    </div>
+  </template>
+
+  <script>
+    //创建Vue实例,得到 ViewModel
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message: '你好啊',
+      },
+      methods: {
+        //访问子组件对象
+        //$children方式
+        btnClick() {
+          this.$children.forEach(child => {
+            child.show();
+          });
+        },
+        //$refs方式
+        btnClick2 () {
+          this.$refs.reftest.show2();
+        },
+
+        show() {
+          console.log("$parent访问组件对象");
+        }
+      },
+      components: {
+        cpn: {
+          template: "#cpn",
+          methods: {
+            show() {
+              console.log("$child访问到子组件对象");
+            },
+            show2() {
+              console.log("$ref访问到子组件对象");
+            },
+            cbtnClick() {
+              this.$parent.show();
+            }
+          },
+        }
+
+      }
+
+    });
+  </script>
+</body>
+
+</html>

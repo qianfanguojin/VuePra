@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../assets/vue.js"></script>
+</head>
+<!-- 子组件通过emit()方法向父组件发送消息 -->
+<body>
+  <div id ="app">
+    <h1 style="color: red;" >父：{{cinputmessage}}</h1>
+    
+    <cpn :inputMessage="cinputmessage" @cinput="inputChange">
+      
+    </cpn>
+  </div>
+
+  <template id="cpn">
+  <div>
+    <input type="text" value=""  @input="cinputChange">
+    <h2>子{{inputMessage}} </h2>
+  </div>
+</template>
+  <script>
+
+   //创建Vue实例,得到 ViewModel
+   const app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好啊',
+      cinputmessage:''
+    },
+    methods: {
+      inputChange(value) {
+        this.cinputmessage = parseFloat(value)*100 ;
+      }
+    },
+    components: {
+      cpn:{
+        template: '#cpn',
+        data: function() {
+          return {
+            inputMessage:'',
+          }
+        },
+        methods: {
+          cinputChange(event) {
+            this.inputMessage = parseFloat(event.target.value) / 100;
+            this.$emit('cinput', event.target.value)
+          }
+        },
+      }
+    }
+   });
+  </script>
+</body>
+
+</html>
