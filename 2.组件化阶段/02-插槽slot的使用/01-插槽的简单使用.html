@@ -7,11 +7,38 @@
   <title>Document</title>
   <script src="../assets/vue.js"></script>
 </head>
-
+<!--  -->
 <body>
   <div id ="app">
-    
+    <!-- 一个标签 -->
+    <!-- <cpn><button>插槽</button></cpn> -->
+
+
+    <!-- 多个以及多级标签 -->
+    <!-- <cpn>
+      <button>00</button>
+      <button>01</button>
+      <div><h1>多级标签</h1></div>
+    </cpn> -->
+
+
+    <br><br><br>
+    <!-- 指定默认值的插槽,若组件标签内不定义标签，则显示默认值，若指定，则会直接覆盖默认值 -->
+    <cpn>
+    </cpn>
+    <br><br><br><br>
+    <cpn>
+      覆盖默认值
+    </cpn>
+
   </div>
+
+  <template id="cpn">
+    <div>
+      <p>我是子组件</p>
+      <slot>默认值</slot>
+    </div>
+  </template>
 
   <script>
    //创建Vue实例,得到 ViewModel
@@ -20,7 +47,12 @@
     data: {
       message: '你好啊',
     },
-    methods: {}
+    methods: {},
+    components:{
+      cpn: {
+        template:"#cpn",
+      }
+    }
    });
   </script>
 </body>

@@ -310,5 +310,130 @@ $emit('customEventName',[data])
 
 ### 5. slot 插槽
 
- 
+插槽可以使我们的组件有更多的自定义性，插槽的存在可以让我们在父组件中动态决定某个标签的内容
 
+在子组件中用`slot`标签可以定义插槽
+
+在父组件的实例中，在子组件标签作用域内的内容都会默认替换到插槽的位置
+
+```javascript
+<div id ="app">
+    <cpn><button>插槽</button></cpn>//cpn标签内的内容都会替换到插槽的位置
+  </div>
+
+  <template id="cpn">
+    <div>
+      <p>我是子组件</p>
+      <slot></slot>
+    </div>
+  </template>
+```
+
+可以在组件标签中定义多个多级的标签，它们都会被替换到插槽的位置
+
+```javascript
+//cpn标签内的所有内容都会替换到插槽的位置
+<!-- 多个以及多级标签 -->
+<cpn>
+      <button>00</button>
+      <button>01</button>
+      <div><h1>多级标签</h1></div>
+</cpn>
+```
+
+当然，有时组件内的某个插槽在许多地方都无需更改，只有少数情况下需要自定义，则我们可以指定插槽的默认值，指定默认值的方式也很简单，只要在组件的`slot`标签中添加内容即可
+
+```javascript
+    <!-- 指定默认值的插槽,若组件标签内不定义标签，则显示默认值，若指定，则会直接覆盖默认值 -->
+    <cpn>
+    </cpn>
+    <cpn>
+      覆盖默认值
+    </cpn>
+
+  </div>
+
+  <template id="cpn">
+    <div>
+      <p>我是子组件</p>
+      <slot>默认值</slot>
+    </div>
+  </template>
+```
+
+当有多个插槽时，可以指定要覆盖的某个插槽
+
+在 **vue 2.6.x**以前和 **2.6.x** 之后有不同的推荐写法
+
+**2.6.x** 之前，使用 `slot` 属性 
+
+```javascript
+ <!-- 若组件中有多个插槽，可以在组件的slot插槽标签中指定 name 属性
+        和组件标签的内部标签中的 slot 属性控制指定覆盖的某个插槽 -->
+
+    <cpn> 
+      <span slot="ccc">替换ccc</span>
+    </cpn>
+		
+		
+    <!-- 	也可以定义template标签
+					指定template中的slot属性将template中的内容覆盖到指定 name的插槽 -->
+    <cpn> 
+      <template slot="ccc">
+        tem替换
+      </template>
+    </cpn>
+
+   <template id="cpn">
+    <div>
+      <p>我是子组件</p>
+      <slot name="ccc">ccc</slot>
+      <!-- <slot name="bbb">我是bbb</slot>
+      <slot name="aaa">我是aaa</slot> -->
+      <slot name="bbb">bbb</slot>
+      <slot name="aaa">aaa</slot>
+    </div>
+  </template>
+```
+
+![](https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210116191228.png)
+
+**2.6.x**之后，使用 `v-slot`, 简写为 `#`
+
+```javascript
+<!-- 2.6.x之后 -->
+    <!-- 使用 v-slot 或 # 指定， 注意，一般来说，只能用于template标签上 -->
+    <hr>
+
+    <cpn>
+      <template v-slot:aaa>
+        <h1>2.6.x替换aaa</h1>
+      </template>
+    </cpn>
+
+    <cpn>
+      <template #bbb>
+        <h1>2.6.x替换bbb</h1>
+      </template>
+    </cpn>
+
+
+ 
+    <!-- <cpn>
+      <span slot="bbb"></span>
+    </cpn> -->
+  </div>
+
+  <template id="cpn">
+    <div>
+      <p>我是子组件</p>
+      <slot name="ccc">ccc</slot>
+      <!-- <slot name="bbb">我是bbb</slot>
+      <slot name="aaa">我是aaa</slot> -->
+      <slot name="bbb">bbb</slot>
+      <slot name="aaa">aaa</slot>
+    </div>
+  </template>
+```
+
+![](https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210116193338.png)

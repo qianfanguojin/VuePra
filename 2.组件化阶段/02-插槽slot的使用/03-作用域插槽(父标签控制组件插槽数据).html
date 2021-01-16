@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../assets/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <cpn></cpn>
+    <hr>
+
+    <!-- 使用slot-scope，值接收组件slot标签传过来的属性对象 -->
+    <cpn>
+      <div slot-scope="slot">
+        <h2 v-for="u in slot.data">{{u.age}} </h2>
+      </div>
+    </cpn>
+
+    <!-- 使用带值的 v-slot 或 # 接收组件中slot标签的属性 -->
+    <cpn>
+      <template v-slot="slotProps">
+        <div>
+          <h2 v-for="u in slotProps.data">{{u.age}} </h2>
+        </div>
+      </template>
+    </cpn>
+  </div>
+
+
+  <template id="cpn">
+    <div>
+      <h3>我是组件</h3>
+      <slot :data="users">
+        <ul>
+          <li v-for="user in users">
+            {{user.name}} 
+          </li>
+        </ul>
+    </div>
+    </slot>
+  </template>
+
+  <script>
+    //创建Vue实例,得到 ViewModel
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message: '你好啊',
+      },
+      methods: {},
+      components: {
+        cpn: {
+          template: "#cpn",
+          data() {
+            return {
+              users: [
+                {
+                  name: '吴桂强',
+                  age: 25,
+                },
+                {
+                  name: '罗一舟',
+                  age: 20
+                }
+              ]
+            }
+          }
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

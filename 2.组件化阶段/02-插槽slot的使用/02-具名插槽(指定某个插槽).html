@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../assets/vue.js"></script>
+</head>
+<!--  -->
+<body>
+  <div id ="app">
+    <br>
+    <br>
+    <br>
+    <!-- 2.6.x以前 -->
+   <!-- 若组件中有多个插槽，可以在组件的slot插槽标签中指定 name 属性
+        和组件标签的内部标签中的 slot 属性控制指定覆盖的某个插槽
+        
+      -->
+
+    <!-- <cpn> 
+      <span slot="ccc">替换ccc</span>
+    </cpn> -->
+
+    <!-- 也可以定义template标签，指定template中的slot属性将template中的内容覆盖到指定 name的插槽 -->
+    <!-- <cpn> 
+      <template slot="ccc">
+        ff
+      </template>
+    </cpn> -->
+
+
+
+
+    <!-- 2.6.x之后 -->
+    <!-- 使用 v-slot 或 # 指定， 注意，一般来说，只能用于template标签上 -->
+    <hr>
+
+    <cpn>
+      <template v-slot:aaa>
+        <h1>2.6.x替换aaa</h1>
+      </template>
+    </cpn>
+
+    <cpn>
+      <template #bbb>
+        <h1>2.6.x替换bbb</h1>
+      </template>
+    </cpn>
+
+
+ 
+    <!-- <cpn>
+      <span slot="bbb"></span>
+    </cpn> -->
+  </div>
+
+  <template id="cpn">
+    <div>
+      <p>我是子组件</p>
+      <slot name="ccc">ccc</slot>
+      <!-- <slot name="bbb">我是bbb</slot>
+      <slot name="aaa">我是aaa</slot> -->
+      <slot name="bbb">bbb</slot>
+      <slot name="aaa">aaa</slot>
+    </div>
+  </template>
+
+  <script>
+   //创建Vue实例,得到 ViewModel
+   const app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好啊',
+    },
+    methods: {},
+    components:{
+      cpn: {
+        template:"#cpn",
+      }
+    }
+   });
+  </script>
+</body>
+
+</html>
