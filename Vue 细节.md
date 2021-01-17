@@ -310,6 +310,8 @@ $emit('customEventName',[data])
 
 ### 5. slot 插槽
 
+#### 5.1 简单使用
+
 插槽可以使我们的组件有更多的自定义性，插槽的存在可以让我们在父组件中动态决定某个标签的内容
 
 在子组件中用`slot`标签可以定义插槽
@@ -437,3 +439,72 @@ $emit('customEventName',[data])
 ```
 
 ![](https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210116193338.png)
+
+#### 5.2 作用域插槽
+
+简单来说，作用域插槽就是：**在父组件插槽替换处中操纵子组件插槽的数据**
+
+```javascript
+    <!-- 使用slot-scope，值接收组件slot标签传过来的属性对象 -->
+    <cpn>
+      <div slot-scope="slot">
+        <h2 v-for="u in slot.data">{{u.age}} </h2>
+      </div>
+    </cpn>
+
+    <!-- 使用带值的 v-slot 或 # 接收组件中slot标签的属性 -->
+    <cpn>
+      <template v-slot="slotProps">
+        <div>
+          <h2 v-for="u in slotProps.data">{{u.age}} </h2>
+        </div>
+      </template>
+    </cpn>
+  </div>
+
+
+  <template id="cpn">
+    <div>
+      <h3>我是组件</h3>
+      <slot :data="users">
+        <ul>
+          <li v-for="user in users">
+            {{user.name}} 
+          </li>
+        </ul>
+    </div>
+    </slot>
+  </template>
+
+  <script>
+    //创建Vue实例,得到 ViewModel
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message: '你好啊',
+      },
+      methods: {},
+      components: {
+        cpn: {
+          template: "#cpn",
+          data() {
+            return {
+              users: [
+                {
+                  name: '吴桂强',
+                  age: 25,
+                },
+                {
+                  name: '罗一舟',
+                  age: 20
+                }
+              ]
+            }
+          }
+        }
+      }
+    });
+  </script>
+</body>
+```
+
