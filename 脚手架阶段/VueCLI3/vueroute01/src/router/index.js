@@ -1,27 +1,60 @@
-import Vue from 'vue'
+//配置路由相关信息
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-
+import Vue from 'vue'
+const Home = () => import('../views/Home')
+const About = () => import('../views/About')
+const User  = () => import('../views/User')
+import HomeNews from '../views/HomeNews.vue'
+import Profile from '../views/Profile.vue'
+//1.安装插件到Vue
 Vue.use(VueRouter)
 
-const routes = [
+//2.配置路由和组件之间应用关系
+const  routes = [
+  //将默认路径重定向到about
   {
-    path: '/',
-    name: 'Home',
-    component: Home
+    path:"",
+    redirect: "/home",
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
+    path:"/home",
+    component: Home,
+    children: [
+      {
+        path:'news',
+        component: HomeNews
+      },
+    
+    ]
+  },
+  {
+    path:'/about',
+    component: About
+  },
+  {
+    path:'/user/:userName',
+    component: User
+  },
+  {
+    path:'/profile',
+    component: Profile
+  },
+  
+
 ]
 
+//3.创建VueRouter对象 
 const router = new VueRouter({
-  routes
+  routes: routes,
+  //abstract history hash
+  mode: 'history',
+  linkActiveClass: 'active'
 })
 
+// router.beforeEach((to, from, next) =>{
+//   next();
+//   console.log("我从" + from.fullPath + "来");
+//   console.log("到" + to.fullPath + "去");
+// })
+//4.导出VueRouter实例
 export default router

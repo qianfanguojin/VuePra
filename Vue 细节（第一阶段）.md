@@ -321,7 +321,7 @@ $emit('customEventName',[data])
 ```javascript
 <div id ="app">
     <cpn><button>插槽</button></cpn>//cpn标签内的内容都会替换到插槽的位置
-  </div>
+</div>
 
   <template id="cpn">
     <div>
